@@ -1,0 +1,148 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1120;
+  color: #e5e7eb;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: #111827;
+  padding: 28px 20px;
+  border-right: 1px solid #263247;
+}
+
+.sidebar h2 {
+  color: #a78bfa;
+  margin-bottom: 45px;
+}
+
+.menu-label {
+  color: #64748b;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+nav div {
+  padding: 14px;
+  margin: 7px 0;
+  border-radius: 8px;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+nav div.active,
+nav div:hover {
+  background: #292344;
+  color: #c4b5fd;
+}
+
+.main {
+  flex: 1;
+  padding: 40px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+header h1 {
+  margin-bottom: 8px;
+}
+
+header p,
+.stat-card p,
+.content-card p {
+  color: #94a3b8;
+}
+
+.status {
+  color: #4ade80;
+  font-size: 13px;
+}
+
+.welcome {
+  background: linear-gradient(120deg, #312e81, #581c87);
+  padding: 32px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+}
+
+.welcome button {
+  background: #a78bfa;
+  color: #111827;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.stat-card,
+.content-card {
+  background: #151f30;
+  border: 1px solid #263247;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.stat-card h2 {
+  font-size: 30px;
+  color: #c4b5fd;
+}
+
+@media (max-width: 800px) {
+  .sidebar {
+    width: 180px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .main {
+    padding: 20px;
+  }
+}
+
+.sidebar nav div {
+  cursor: pointer;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.sidebar nav div:hover {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+.sidebar nav div.active {
+  background-color: #312e81;
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
