@@ -1,0 +1,59 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. SIMPLE-CALCULATOR.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 WS-NUM1          PIC S9(9)V99 VALUE ZEROS.
+       01 WS-NUM2          PIC S9(9)V99 VALUE ZEROS.
+       01 WS-RESULT        PIC S9(12)V99 VALUE ZEROS.
+       01 WS-DISPLAY-RES   PIC -ZZZ,ZZZ,ZZZ,ZZ9.99.
+       01 WS-OPERATOR      PIC X VALUE SPACE.
+       01 WS-CONTINUE      PIC X VALUE 'Y'.
+
+       PROCEDURE DIVISION.
+       MAIN-LOOP.
+           PERFORM UNTIL WS-CONTINUE NOT = 'Y' AND WS-CONTINUE NOT = 'y'
+               DISPLAY "==================================="
+               DISPLAY "         COBOL CALCULATOR          "
+               DISPLAY "==================================="
+               DISPLAY "Enter first number: " WITH NO ADVANCING
+               ACCEPT WS-NUM1
+
+               DISPLAY "Enter operator (+, -, *, /): " WITH NO ADVANCING
+               ACCEPT WS-OPERATOR
+
+               DISPLAY "Enter second number: " WITH NO ADVANCING
+               ACCEPT WS-NUM2
+
+               EVALUATE WS-OPERATOR
+                   WHEN '+'
+                       COMPUTE WS-RESULT = WS-NUM1 + WS-NUM2
+                       MOVE WS-RESULT TO WS-DISPLAY-RES
+                       DISPLAY "Result: " WS-DISPLAY-RES
+                   WHEN '-'
+                       COMPUTE WS-RESULT = WS-NUM1 - WS-NUM2
+                       MOVE WS-RESULT TO WS-DISPLAY-RES
+                       DISPLAY "Result: " WS-DISPLAY-RES
+                   WHEN '*'
+                       COMPUTE WS-RESULT = WS-NUM1 * WS-NUM2
+                       MOVE WS-RESULT TO WS-DISPLAY-RES
+                       DISPLAY "Result: " WS-DISPLAY-RES
+                   WHEN '/'
+                       IF WS-NUM2 = 0
+                           DISPLAY "Error: Division by zero is not allowed."
+                       ELSE
+                           COMPUTE WS-RESULT = WS-NUM1 / WS-NUM2
+                           MOVE WS-RESULT TO WS-DISPLAY-RES
+                           DISPLAY "Result: " WS-DISPLAY-RES
+                       END-IF
+                   WHEN OTHER
+                       DISPLAY "Invalid operator! Please use +, -, *, or /."
+               END-EVALUATE
+
+               DISPLAY " "
+               DISPLAY "Calculate again? (Y/N): " WITH NO ADVANCING
+               ACCEPT WS-CONTINUE
+           END-PERFORM
+
+           DISPLAY "Goodbye!"
+           STOP RUN.
