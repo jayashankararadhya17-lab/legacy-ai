@@ -39,6 +39,28 @@ export const modernizeProject = async (projectId, targetLanguage, explanations =
   return response.data;
 };
 
+export const getSuggestedAnalysisQuestions = async (
+  projectId,
+  explanations = {},
+  architectureSummary = null
+) => {
+  const response = await api.post(`/analysis/${projectId}/suggested-questions`, {
+    explanations,
+    architecture_summary: architectureSummary,
+  });
+  return response.data;
+};
+
+export const chatAnalysis = async (projectId, payload) => {
+  const response = await api.post(`/analysis/${projectId}/chat`, payload);
+  return response.data;
+};
+
+export const chatModernization = async (projectId, payload) => {
+  const response = await api.post(`/modernization/${projectId}/chat`, payload);
+  return response.data;
+};
+
 export const explainFile = async (
   projectId,
   filePath
